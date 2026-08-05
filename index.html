@@ -1,3 +1,6 @@
+## Premium Romantic Version (Single File)
+
+```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -5,317 +8,401 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>তোমাকে ভীষণ মনে পড়ছে</title>
 
-  <!-- Google Fonts: Elegant Bengali Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@700;800&family=Hind+Siliguri:wght@300;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@700;800&family=Hind+Siliguri:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at center, #2e051a 0%, #11020b 60%, #050003 100%);
-      font-family: 'Hind Siliguri', sans-serif;
-      overflow: hidden;
-      cursor: pointer;
-      user-select: none;
-      position: relative;
+    body{
+      min-height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+      font-family:'Hind Siliguri',sans-serif;
+      background:linear-gradient(-45deg,#12000a,#2d0018,#3a001f,#12000a);
+      background-size:400% 400%;
+      animation:bgMove 15s ease infinite;
+      cursor:pointer;
     }
 
-    /* Floating Ambient Background Orbs */
-    .bg-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      z-index: 1;
-      pointer-events: none;
+    @keyframes bgMove{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
     }
 
-    .orb-1 {
-      width: 450px;
-      height: 450px;
-      background: rgba(255, 51, 102, 0.28);
-      top: 15%;
-      left: 20%;
-      animation: floatOrb 8s ease-in-out infinite alternate;
+    .glow{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(100px);
+      opacity:.35;
+      animation:float 10s ease-in-out infinite alternate;
     }
 
-    .orb-2 {
-      width: 380px;
-      height: 380px;
-      background: rgba(255, 133, 162, 0.2);
-      bottom: 10%;
-      right: 18%;
-      animation: floatOrb 10s ease-in-out infinite alternate-reverse;
+    .g1{
+      width:420px;
+      height:420px;
+      background:#ff3d7f;
+      top:-120px;
+      left:-100px;
     }
 
-    @keyframes floatOrb {
-      0% {
-        transform: translate(0, 0) scale(0.9);
+    .g2{
+      width:380px;
+      height:380px;
+      background:#ff8db0;
+      bottom:-120px;
+      right:-80px;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+      from{
+        transform:translateY(0) translateX(0) scale(1);
       }
-      100% {
-        transform: translate(40px, -40px) scale(1.15);
-      }
-    }
-
-    /* Ambient Canvas for Floating Background Petals/Stars */
-    #bg-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    /* Glassmorphic Central Card */
-    .glass-card {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      padding: 65px 45px;
-      max-width: 700px;
-      width: 90%;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 182, 193, 0.25);
-      border-radius: 32px;
-      box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        inset 0 0 20px rgba(255, 255, 255, 0.08),
-        0 0 35px rgba(255, 51, 102, 0.2);
-      animation: cardEntrance 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    @keyframes cardEntrance {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
+      to{
+        transform:translateY(-30px) translateX(30px) scale(1.1);
       }
     }
 
-    /* Top Decorative English Script Accent */
-    .english-accent {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2.2rem;
-      color: #ff85a2;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      text-shadow: 0 0 12px rgba(255, 133, 162, 0.6);
-      opacity: 0.9;
+    #stars{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:1;
     }
 
-    /* Glowing 3D Heart Element */
-    .heart-icon {
-      font-size: 3rem;
-      margin: 15px 0 25px;
-      display: inline-block;
-      animation: heartBeat 1.4s ease-in-out infinite;
-      filter: drop-shadow(0 0 18px #ff3366);
+    .card{
+      position:relative;
+      z-index:5;
+      width:min(92%,720px);
+      padding:70px 50px;
+      text-align:center;
+      border-radius:36px;
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:
+        0 25px 60px rgba(0,0,0,.55),
+        inset 0 0 30px rgba(255,255,255,.05),
+        0 0 40px rgba(255,77,121,.25);
+      transition:transform .25s ease;
+      overflow:hidden;
     }
 
-    @keyframes heartBeat {
-      0%, 100% {
-        transform: scale(1);
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:38px;
+      background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.2),
+        rgba(255,77,121,.25),
+        rgba(255,255,255,.08)
+      );
+      z-index:-1;
+      filter:blur(12px);
+    }
+
+    .script{
+      font-family:'Great Vibes',cursive;
+      font-size:2.4rem;
+      color:#ffb5c9;
+      margin-bottom:12px;
+      text-shadow:0 0 15px rgba(255,181,201,.6);
+      animation:fadeIn 1.5s ease forwards;
+    }
+
+    .heart{
+      font-size:4rem;
+      margin:12px 0 24px;
+      display:inline-block;
+      filter:drop-shadow(0 0 20px #ff4d79);
+      animation:beat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes beat{
+      0%,100%{transform:scale(1);}
+      20%{transform:scale(1.25);}
+      40%{transform:scale(1);}
+      60%{transform:scale(1.18);}
+    }
+
+    .title{
+      font-family:'Anek Bangla',sans-serif;
+      font-size:clamp(3rem,7vw,5.3rem);
+      font-weight:800;
+      line-height:1.2;
+      letter-spacing:1px;
+      background:linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #ffe8ee 20%,
+        #ff9bb7 45%,
+        #ff4d79 70%,
+        #ffd9e2 100%
+      );
+      background-size:250% auto;
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shine 6s linear infinite;
+      text-shadow:0 0 35px rgba(255,77,121,.45);
+    }
+
+    @keyframes shine{
+      from{background-position:0% center;}
+      to{background-position:250% center;}
+    }
+
+    .subtitle{
+      margin-top:24px;
+      font-size:1.08rem;
+      line-height:1.9;
+      color:rgba(255,235,240,.88);
+      font-weight:300;
+    }
+
+    .divider{
+      width:120px;
+      height:2px;
+      margin:28px auto;
+      background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.9),
+        transparent
+      );
+      border-radius:999px;
+    }
+
+    .hint{
+      margin-top:34px;
+      font-size:.82rem;
+      letter-spacing:3px;
+      color:rgba(255,220,228,.55);
+      text-transform:uppercase;
+    }
+
+    .floating-heart{
+      position:absolute;
+      bottom:-30px;
+      pointer-events:none;
+      animation:rise linear forwards;
+      z-index:2;
+      opacity:.85;
+      filter:drop-shadow(0 0 10px rgba(255,77,121,.6));
+    }
+
+    @keyframes rise{
+      from{
+        transform:translateY(0) scale(.8);
+        opacity:0;
       }
-      15% {
-        transform: scale(1.25);
+      10%{
+        opacity:.9;
       }
-      30% {
-        transform: scale(1);
-      }
-      45% {
-        transform: scale(1.18);
+      to{
+        transform:translateY(-115vh) translateX(var(--drift)) scale(1.35);
+        opacity:0;
       }
     }
 
-    /* Main Shimmering Gradient Typography */
-    .main-text {
-      font-family: 'Anek Bangla', 'Hind Siliguri', sans-serif;
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 0%, #ffe6eb 30%, #ff4d79 70%, #ff85a2 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 35px rgba(255, 77, 121, 0.5);
-      line-height: 1.25;
-      letter-spacing: 1px;
-      animation: shineGradient 5s ease infinite alternate;
+    .burst{
+      position:absolute;
+      pointer-events:none;
+      z-index:999;
+      animation:burst 1.8s cubic-bezier(.2,1,.3,1) forwards;
     }
 
-    @keyframes shineGradient {
-      0% {
-        background-position: 0% 50%;
+    @keyframes burst{
+      0%{
+        opacity:1;
+        transform:translate(-50%,-50%) scale(.4) rotate(0deg);
       }
-      100% {
-        background-position: 100% 50%;
+      100%{
+        opacity:0;
+        transform:
+          translate(
+            calc(-50% + var(--dx)),
+            calc(-50% + var(--dy))
+          )
+          scale(1.6)
+          rotate(var(--rot));
       }
     }
 
-    /* Subtext Hint */
-    .hint {
-      margin-top: 35px;
-      font-size: 0.85rem;
-      color: rgba(255, 204, 213, 0.5);
-      letter-spacing: 2px;
-      font-weight: 300;
-      text-transform: uppercase;
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(12px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
-    /* Interactive Click Particles */
-    .particle {
-      position: absolute;
-      pointer-events: none;
-      z-index: 999;
-      animation: floatAway 1.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
+    @media (max-width:640px){
+      .card{
+        padding:56px 28px;
+      }
 
-    @keyframes floatAway {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
+      .script{
+        font-size:2rem;
       }
-      50% {
-        opacity: 0.95;
-        transform: translate(calc(-50% + var(--x-drift)), calc(-50% - 90px)) scale(1.3) rotate(var(--rot));
+
+      .heart{
+        font-size:3.3rem;
       }
-      100% {
-        opacity: 0;
-        transform: translate(calc(-50% + var(--x-drift)), calc(-50% - 180px)) scale(0.6) rotate(var(--rot));
+
+      .subtitle{
+        font-size:1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Orbs -->
-  <div class="bg-orb orb-1"></div>
-  <div class="bg-orb orb-2"></div>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
 
-  <!-- Background Canvas for Floating Particles -->
-  <canvas id="bg-canvas"></canvas>
+  <canvas id="stars"></canvas>
 
-  <!-- Central Glassmorphism Card -->
-  <div class="glass-card">
-    <div class="english-accent">Thinking of you every second</div>
-    <div class="heart-icon">💖</div>
-    <h1 class="main-text">তোমাকে ভীষণ মনে পড়ছে</h1>
+  <div class="card" id="card">
+    <div class="script">Thinking of you every heartbeat</div>
+
+    <div class="heart">💖</div>
+
+    <h1 class="title">তোমাকে ভীষণ মনে পড়ছে</h1>
+
+    <div class="divider"></div>
+
+    <p class="subtitle">
+      তোমার হাসি, তোমার কথা, তোমার সেই ছোট ছোট মুহূর্তগুলো
+      আজও আমার চারপাশে ভেসে বেড়ায়। দূরে থেকেও তুমি যেন
+      আমার প্রতিটি নিঃশ্বাসের খুব কাছেই আছো। 🌹
+    </p>
+
     <div class="hint">✨ স্ক্রিনে স্পর্শ করুন ✨</div>
   </div>
 
   <script>
-    /* Canvas Floating Particles (Stars/Petals) Background */
-    const canvas = document.getElementById('bg-canvas');
+    /* ===== Starfield ===== */
+    const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    let w = canvas.width = innerWidth;
+    let h = canvas.height = innerHeight;
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+    addEventListener('resize', () => {
+      w = canvas.width = innerWidth;
+      h = canvas.height = innerHeight;
     });
 
-    const bgParticles = [];
-    const numBgParticles = 45;
+    const stars = Array.from({length:120}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.8,
+      s: Math.random() * 0.7 + 0.2
+    }));
 
-    class BgParticle {
-      constructor() {
-        this.reset();
-      }
+    function drawStars(){
+      ctx.clearRect(0,0,w,h);
 
-      reset() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height + height;
-        this.size = Math.random() * 3 + 1;
-        this.speedY = Math.random() * 0.8 + 0.3;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.6 + 0.2;
-      }
+      for(const star of stars){
+        star.y -= star.s;
 
-      update() {
-        this.y -= this.speedY;
-        this.x += this.speedX;
-
-        if (this.y < -10) {
-          this.reset();
-          this.y = height + 10;
+        if(star.y < 0){
+          star.y = h;
+          star.x = Math.random() * w;
         }
-      }
 
-      draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 182, 193, ${this.opacity})`;
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,.8)';
         ctx.shadowBlur = 10;
-        ctx.shadowColor = '#ff3366';
+        ctx.shadowColor = '#ffffff';
         ctx.fill();
       }
+
+      requestAnimationFrame(drawStars);
     }
 
-    for (let i = 0; i < numBgParticles; i++) {
-      const p = new BgParticle();
-      p.y = Math.random() * height; // initial spread
-      bgParticles.push(p);
+    drawStars();
+
+    /* ===== Floating Hearts ===== */
+    const heartPool = ['❤️','💖','💕','💗','🌹','✨'];
+
+    function spawnHeart(){
+      const el = document.createElement('div');
+
+      el.className = 'floating-heart';
+      el.textContent = heartPool[Math.floor(Math.random() * heartPool.length)];
+
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (Math.random() * 1.6 + 1.1) + 'rem';
+      el.style.animationDuration = (Math.random() * 5 + 7) + 's';
+      el.style.setProperty(
+        '--drift',
+        (Math.random() * 120 - 60) + 'px'
+      );
+
+      document.body.appendChild(el);
+
+      setTimeout(() => el.remove(), 12000);
     }
 
-    function animateBg() {
-      ctx.clearRect(0, 0, width, height);
-      bgParticles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateBg);
-    }
+    setInterval(spawnHeart, 900);
 
-    animateBg();
+    /* ===== Click Burst Effect ===== */
+    document.addEventListener('click', e => {
+      for(let i = 0; i < 8; i++){
+        const b = document.createElement('div');
 
-    /* Interactive Click Burst Effect */
-    const interactiveSymbols = ['❤️', '💖', '💗', '💕', '✨', '🌹', '💌'];
+        b.className = 'burst';
+        b.textContent = heartPool[Math.floor(Math.random() * heartPool.length)];
 
-    document.addEventListener('click', (e) => {
-      for (let i = 0; i < 4; i++) {
-        createInteractiveParticle(e.clientX, e.clientY);
+        b.style.left = e.clientX + 'px';
+        b.style.top = e.clientY + 'px';
+        b.style.fontSize = (Math.random() * 1.2 + 1.2) + 'rem';
+
+        b.style.setProperty('--dx', (Math.random() * 240 - 120) + 'px');
+        b.style.setProperty('--dy', (Math.random() * -220 - 40) + 'px');
+        b.style.setProperty('--rot', (Math.random() * 180 - 90) + 'deg');
+
+        document.body.appendChild(b);
+
+        setTimeout(() => b.remove(), 1800);
       }
     });
 
-    function createInteractiveParticle(x, y) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.innerHTML = interactiveSymbols[Math.floor(Math.random() * interactiveSymbols.length)];
-      
-      particle.style.left = `${x}px`;
-      particle.style.top = `${y}px`;
-      particle.style.fontSize = `${Math.random() * 1.3 + 1.2}rem`;
+    /* ===== Mouse Parallax ===== */
+    const card = document.getElementById('card');
 
-      const xDrift = (Math.random() - 0.5) * 140 + 'px';
-      const rotation = (Math.random() - 0.5) * 90 + 'deg';
+    document.addEventListener('mousemove', e => {
+      const x = (e.clientX / innerWidth - 0.5) * 12;
+      const y = (e.clientY / innerHeight - 0.5) * 12;
 
-      particle.style.setProperty('--x-drift', xDrift);
-      particle.style.setProperty('--rot', rotation);
+      card.style.transform =
+        `rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;
+    });
 
-      document.body.appendChild(particle);
-
-      setTimeout(() => {
-        particle.remove();
-      }, 1800);
-    }
+    document.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
   </script>
 
 </body>
 </html>
+```
