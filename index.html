@@ -1,12 +1,13 @@
-## Premium Romantic Version (Single File)
-
-```html
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>তোমাকে ভীষণ মনে পড়ছে</title>
+
+  <!-- Browser Tab Logo (Favicon) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27><defs><linearGradient id=%27g%27 x1=%270%27 y1=%270%27 x2=%271%27 y2=%271%27><stop stop-color=%27%23ff4d79%27/><stop offset=%271%27 stop-color=%27%23ffb3c7%27/></linearGradient></defs><circle cx=%2732%27 cy=%2732%27 r=%2730%27 fill=%27url(%23g)%27/><text x=%2750%25%27 y=%2758%25%27 text-anchor=%27middle%27 font-size=%2732%27>💖</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +22,7 @@
 
     body{
       min-height:100vh;
-      overflow:hidden;
+      overflow-x:hidden;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -31,6 +32,7 @@
       background-size:400% 400%;
       animation:bgMove 15s ease infinite;
       cursor:pointer;
+      padding:20px 0;
     }
 
     @keyframes bgMove{
@@ -40,11 +42,12 @@
     }
 
     .glow{
-      position:absolute;
+      position:fixed;
       border-radius:50%;
       filter:blur(100px);
       opacity:.35;
       animation:float 10s ease-in-out infinite alternate;
+      pointer-events:none;
     }
 
     .g1{
@@ -65,27 +68,26 @@
     }
 
     @keyframes float{
-      from{
-        transform:translateY(0) translateX(0) scale(1);
-      }
-      to{
-        transform:translateY(-30px) translateX(30px) scale(1.1);
-      }
+      from{transform:translateY(0) translateX(0) scale(1);}
+      to{transform:translateY(-30px) translateX(30px) scale(1.1);}
     }
 
     #stars{
-      position:absolute;
+      position:fixed;
       inset:0;
       width:100%;
       height:100%;
       z-index:1;
+      pointer-events:none;
     }
 
     .card{
       position:relative;
       z-index:5;
       width:min(92%,720px);
-      padding:70px 50px;
+      max-height:88vh;
+      overflow-y:auto;
+      padding:40px 30px;
       text-align:center;
       border-radius:36px;
       background:rgba(255,255,255,.06);
@@ -97,7 +99,18 @@
         inset 0 0 30px rgba(255,255,255,.05),
         0 0 40px rgba(255,77,121,.25);
       transition:transform .25s ease;
-      overflow:hidden;
+    }
+
+    /* Custom Scrollbar for Card */
+    .card::-webkit-scrollbar {
+      width:6px;
+    }
+    .card::-webkit-scrollbar-thumb {
+      background:rgba(255,77,121,0.4);
+      border-radius:10px;
+    }
+    .card::-webkit-scrollbar-track {
+      background:transparent;
     }
 
     .card::before{
@@ -105,31 +118,84 @@
       position:absolute;
       inset:-2px;
       border-radius:38px;
-      background:linear-gradient(
-        135deg,
-        rgba(255,255,255,.2),
-        rgba(255,77,121,.25),
-        rgba(255,255,255,.08)
-      );
+      background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,77,121,.25),rgba(255,255,255,.08));
       z-index:-1;
       filter:blur(12px);
     }
 
+    /* Logo Styling */
+    .logo-wrapper{
+      display:flex;
+      justify-content:center;
+      margin-bottom:18px;
+    }
+
+    .logo-circle{
+      position:relative;
+      width:90px;
+      height:90px;
+      border-radius:50%;
+      background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,77,121,0.28));
+      border:2px solid rgba(255,255,255,0.25);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      box-shadow:0 0 35px rgba(255,77,121,0.45), inset 0 0 18px rgba(255,255,255,0.12);
+      animation:logoFloat 4s ease-in-out infinite;
+    }
+
+    .logo-circle::before{
+      content:"";
+      position:absolute;
+      inset:-6px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#ff4d79,#ffb3c7,#ffffff);
+      z-index:-1;
+      opacity:.45;
+      filter:blur(14px);
+    }
+
+    .logo-heart{
+      font-size:2rem;
+      position:absolute;
+      animation:logoBeat 1.8s ease-in-out infinite;
+      filter:drop-shadow(0 0 12px #ff4d79);
+    }
+
+    .logo-rose{
+      position:absolute;
+      bottom:8px;
+      right:10px;
+      font-size:1rem;
+    }
+
+    @keyframes logoBeat{
+      0%,100%{transform:scale(1);}
+      25%{transform:scale(1.15);}
+      50%{transform:scale(1);}
+      75%{transform:scale(1.08);}
+    }
+
+    @keyframes logoFloat{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-8px);}
+    }
+
     .script{
       font-family:'Great Vibes',cursive;
-      font-size:2.4rem;
+      font-size:2.1rem;
       color:#ffb5c9;
-      margin-bottom:12px;
-      text-shadow:0 0 15px rgba(255,181,201,.6);
-      animation:fadeIn 1.5s ease forwards;
+      margin-bottom:8px;
     }
 
     .heart{
-      font-size:4rem;
-      margin:12px 0 24px;
+      font-size:3.2rem;
+      margin:8px 0 16px;
       display:inline-block;
-      filter:drop-shadow(0 0 20px #ff4d79);
       animation:beat 1.5s ease-in-out infinite;
+      filter:drop-shadow(0 0 20px #ff4d79);
     }
 
     @keyframes beat{
@@ -141,18 +207,10 @@
 
     .title{
       font-family:'Anek Bangla',sans-serif;
-      font-size:clamp(3rem,7vw,5.3rem);
+      font-size:clamp(2.4rem, 6vw, 4.2rem);
       font-weight:800;
       line-height:1.2;
-      letter-spacing:1px;
-      background:linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #ffe8ee 20%,
-        #ff9bb7 45%,
-        #ff4d79 70%,
-        #ffd9e2 100%
-      );
+      background:linear-gradient(135deg,#ffffff,#ffe8ee,#ff9bb7,#ff4d79,#ffd9e2);
       background-size:250% auto;
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -165,110 +223,56 @@
       to{background-position:250% center;}
     }
 
+    .divider{
+      width:120px;
+      height:2px;
+      margin:20px auto;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+      border-radius:999px;
+    }
+
     .subtitle{
-      margin-top:24px;
-      font-size:1.08rem;
-      line-height:1.9;
+      margin-top:16px;
+      font-size:1.05rem;
+      line-height:1.8;
       color:rgba(255,235,240,.88);
       font-weight:300;
     }
 
-    .divider{
-      width:120px;
-      height:2px;
-      margin:28px auto;
-      background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.9),
-        transparent
-      );
-      border-radius:999px;
+    .special-line{
+      margin-top:18px;
+      font-size:1.35rem;
+      color:#ffb5c9;
+      animation:beat 2s ease infinite;
     }
 
     .hint{
-      margin-top:34px;
-      font-size:.82rem;
+      margin-top:26px;
+      font-size:.8rem;
       letter-spacing:3px;
       color:rgba(255,220,228,.55);
       text-transform:uppercase;
     }
 
     .floating-heart{
-      position:absolute;
+      position:fixed;
       bottom:-30px;
       pointer-events:none;
       animation:rise linear forwards;
       z-index:2;
-      opacity:.85;
-      filter:drop-shadow(0 0 10px rgba(255,77,121,.6));
     }
 
     @keyframes rise{
-      from{
-        transform:translateY(0) scale(.8);
-        opacity:0;
-      }
-      10%{
-        opacity:.9;
-      }
-      to{
-        transform:translateY(-115vh) translateX(var(--drift)) scale(1.35);
-        opacity:0;
-      }
-    }
-
-    .burst{
-      position:absolute;
-      pointer-events:none;
-      z-index:999;
-      animation:burst 1.8s cubic-bezier(.2,1,.3,1) forwards;
-    }
-
-    @keyframes burst{
-      0%{
-        opacity:1;
-        transform:translate(-50%,-50%) scale(.4) rotate(0deg);
-      }
-      100%{
-        opacity:0;
-        transform:
-          translate(
-            calc(-50% + var(--dx)),
-            calc(-50% + var(--dy))
-          )
-          scale(1.6)
-          rotate(var(--rot));
-      }
-    }
-
-    @keyframes fadeIn{
-      from{
-        opacity:0;
-        transform:translateY(12px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      from{transform:translateY(0) scale(.8);opacity:0;}
+      10%{opacity:.9;}
+      to{transform:translateY(-115vh) translateX(var(--drift)) scale(1.35);opacity:0;}
     }
 
     @media (max-width:640px){
-      .card{
-        padding:56px 28px;
-      }
-
-      .script{
-        font-size:2rem;
-      }
-
-      .heart{
-        font-size:3.3rem;
-      }
-
-      .subtitle{
-        font-size:1rem;
-      }
+      .card{padding:30px 20px;}
+      .script{font-size:1.8rem;}
+      .heart{font-size:2.8rem;}
+      .special-line{font-size:1.15rem;}
     }
   </style>
 </head>
@@ -280,6 +284,14 @@
   <canvas id="stars"></canvas>
 
   <div class="card" id="card">
+
+    <div class="logo-wrapper">
+      <div class="logo-circle">
+        <span class="logo-heart">💖</span>
+        <span class="logo-rose">🌹</span>
+      </div>
+    </div>
+
     <div class="script">Thinking of you every heartbeat</div>
 
     <div class="heart">💖</div>
@@ -294,11 +306,14 @@
       আমার প্রতিটি নিঃশ্বাসের খুব কাছেই আছো। 🌹
     </p>
 
+    <div class="special-line">
+      💌 তুমি থাকো আমার হৃদয়ের সবচেয়ে সুন্দর জায়গায়
+    </div>
+
     <div class="hint">✨ স্ক্রিনে স্পর্শ করুন ✨</div>
   </div>
 
   <script>
-    /* ===== Starfield ===== */
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
 
@@ -311,10 +326,10 @@
     });
 
     const stars = Array.from({length:120}, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.8,
-      s: Math.random() * 0.7 + 0.2
+      x: Math.random()*w,
+      y: Math.random()*h,
+      r: Math.random()*1.8,
+      s: Math.random()*0.7 + 0.2
     }));
 
     function drawStars(){
@@ -325,14 +340,12 @@
 
         if(star.y < 0){
           star.y = h;
-          star.x = Math.random() * w;
+          star.x = Math.random()*w;
         }
 
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI*2);
         ctx.fillStyle = 'rgba(255,255,255,.8)';
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = '#ffffff';
         ctx.fill();
       }
 
@@ -341,68 +354,24 @@
 
     drawStars();
 
-    /* ===== Floating Hearts ===== */
     const heartPool = ['❤️','💖','💕','💗','🌹','✨'];
 
     function spawnHeart(){
       const el = document.createElement('div');
-
       el.className = 'floating-heart';
-      el.textContent = heartPool[Math.floor(Math.random() * heartPool.length)];
+      el.textContent = heartPool[Math.floor(Math.random()*heartPool.length)];
 
-      el.style.left = Math.random() * 100 + 'vw';
-      el.style.fontSize = (Math.random() * 1.6 + 1.1) + 'rem';
-      el.style.animationDuration = (Math.random() * 5 + 7) + 's';
-      el.style.setProperty(
-        '--drift',
-        (Math.random() * 120 - 60) + 'px'
-      );
+      el.style.left = Math.random()*100 + 'vw';
+      el.style.fontSize = (Math.random()*1.6 + 1.1) + 'rem';
+      el.style.animationDuration = (Math.random()*5 + 7) + 's';
+      el.style.setProperty('--drift',(Math.random()*120 - 60) + 'px');
 
       document.body.appendChild(el);
-
-      setTimeout(() => el.remove(), 12000);
+      setTimeout(() => el.remove(),12000);
     }
 
-    setInterval(spawnHeart, 900);
-
-    /* ===== Click Burst Effect ===== */
-    document.addEventListener('click', e => {
-      for(let i = 0; i < 8; i++){
-        const b = document.createElement('div');
-
-        b.className = 'burst';
-        b.textContent = heartPool[Math.floor(Math.random() * heartPool.length)];
-
-        b.style.left = e.clientX + 'px';
-        b.style.top = e.clientY + 'px';
-        b.style.fontSize = (Math.random() * 1.2 + 1.2) + 'rem';
-
-        b.style.setProperty('--dx', (Math.random() * 240 - 120) + 'px');
-        b.style.setProperty('--dy', (Math.random() * -220 - 40) + 'px');
-        b.style.setProperty('--rot', (Math.random() * 180 - 90) + 'deg');
-
-        document.body.appendChild(b);
-
-        setTimeout(() => b.remove(), 1800);
-      }
-    });
-
-    /* ===== Mouse Parallax ===== */
-    const card = document.getElementById('card');
-
-    document.addEventListener('mousemove', e => {
-      const x = (e.clientX / innerWidth - 0.5) * 12;
-      const y = (e.clientY / innerHeight - 0.5) * 12;
-
-      card.style.transform =
-        `rotateY(${x}deg) rotateX(${-y}deg) translateY(-3px)`;
-    });
-
-    document.addEventListener('mouseleave', () => {
-      card.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
+    setInterval(spawnHeart,900);
   </script>
 
 </body>
 </html>
-```
